@@ -1,0 +1,4 @@
+INSERT INTO IDS VALUES ('universe', 1);
+INSERT INTO IDS VALUES ('accounts', 1);
+INSERT INTO IDS VALUES ('friends', 1);
+INSERT INTO IDS VALUES ('messages', 1);
