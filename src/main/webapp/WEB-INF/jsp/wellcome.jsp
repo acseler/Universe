@@ -24,10 +24,18 @@
         <h1 class="h1 text-center">Wellcome to Create your Universe</h1>
 
         <div class="col-md-offset-4 col-md-4">
+            <c:if test="${not empty errorLogining}">
+                <div id="errorLogining" class="col-md-12">
+                    <div class="alert alert-warning text-center margin-bottom-0">
+                            ${errorLogining}
+                    </div>
+                </div>
+            </c:if>
             <form role="form" id="logForm" method="post" action="home">
                 <div class="form-group">
                     <div class="col-md-12">
-                        <input type="text" class="form-control" id="login" name="auLogin" placeholder="Enter your login"/>
+                        <input type="text" class="form-control" id="login" name="auLogin"
+                               placeholder="Enter your login"/>
                         <input type="text" id="password" name="auPassword" class="form-control margin-10"
                                placeholder="Enter your password"/>
                         <button type="submit" class="btn btn-primary col-md-12 margin-10">Sign in</button>

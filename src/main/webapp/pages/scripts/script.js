@@ -6,6 +6,7 @@ $(document).ready(function () {
     $("#regButton").click(function () {
         $("#logForm").slideUp();
         $("#regForm").fadeIn();
+        //$("#errorLogining").hide();
     });
     //Sign in button handler
     $("#signButton").click(function () {
@@ -14,6 +15,9 @@ $(document).ready(function () {
         $("#enteringLogin").slideDown();
         $("#enteringInfo").fadeOut();
         $("#universeInfo").fadeOut();
+        $("#regLogin").val('');
+        $("#regPassword").val('');
+        $("#regPasswordConfirm").val('');
     });
     //Continie first step button handler
     $("#continueButtonFirstStep").click(function () {
@@ -27,7 +31,6 @@ $(document).ready(function () {
             $("#regPassword").parent().removeClass("has-error");
             $("#regPasswordConfirm").parent().addClass("has-error");
         } else {
-
             if ($("#regPassword").val() == $("#regPasswordConfirm").val()) {
                 $("#enteringLogin").slideUp();
                 $("#universeInfo").fadeIn();
@@ -35,7 +38,6 @@ $(document).ready(function () {
                 alert("Incorrect password");
             }
         }
-
     });
     //Continie second step button handler
     $("#continueButtonSecondStep").click(function () {
@@ -56,6 +58,8 @@ $(document).ready(function () {
         $("#universeInfo").slideDown();
         $("#enteringInfo").fadeOut();
     });
+
+
 
     //$("#registrationFinal").click(function() {
     //    if (isEmpty($("#firstName").val())) {

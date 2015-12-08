@@ -15,8 +15,13 @@ public class Logining {
     private HibernateTemplate hibernateTemplate;
 
     public Account checkLoginAndPassword(String login, String password) {
-        Login loginEn = hibernateTemplate.get(Login.class, login);
-        if (loginEn.equals(login) && loginEn.equals(password)) {
+        Login loginEn = null;
+        if (login.isEmpty() || password.isEmpty()) {
+            return null;
+        } else {
+            loginEn = hibernateTemplate.get(Login.class, login);
+        }
+        if (loginEn.getLogin().equals(login) && loginEn.getPassword().equals(password)) {
             return loginEn.getAccount();
         }
         return null;
