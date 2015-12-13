@@ -32,8 +32,15 @@ $(document).ready(function () {
             $("#regPasswordConfirm").parent().addClass("has-error");
         } else {
             if ($("#regPassword").val() == $("#regPasswordConfirm").val()) {
-                $("#enteringLogin").slideUp();
-                $("#universeInfo").fadeIn();
+                $.post( "/checkLogin/" + $("#regLogin").val() + ".json", function( data ) {
+                    if (data == "true") {
+                        $("#enteringLogin").slideUp();
+                        $("#universeInfo").fadeIn();
+                    } else {
+                        alert("Login " + $("#regLogin").val() + " is already exists.");
+                    }
+                });
+
             } else {
                 alert("Incorrect password");
             }

@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="header">
-                <img src="/pages/img/logo.png" alt="Logo"/>
+                <img src="/pages/img/Logo.png" alt="Logo"/>
             </div>
         </div>
     </div>
@@ -45,7 +45,7 @@
                     </div>
                 </div>
             </form>
-            <form role="form" id="regForm" method="post">
+            <form role="form" id="regForm" method="post" datatype="application/x-www-form-urlencoded">
                 <div class="col-md-12">
                     <div id="enteringLogin">
                         <div>
@@ -85,26 +85,27 @@
                                placeholder="Last name" required/>
                         <label for="birthDayDay" class="control-label margin-10">Birthday</label>
 
-                        <div class="row">
-                            <div class="col-md-4">
-                                <input type="text" class="form-control" id="birthDayDay" name="birthDayDay"
+                        <%--<div class="row">--%>
+                            <%--<div class="col-md-4">--%>
+                                <input type="text" class="form-control margin-10" id="birthDayDay" name="birthDayDay"
                                        placeholder="Day" pattern="0[1-9]|[12][0-9]|3[01]" required/>
-                            </div>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control" id="birthDayMounth" name="birthDayMounth"
+                            <%--</div>--%>
+                            <%--<div class="col-md-4">--%>
+                                <input type="text" class="form-control margin-10" id="birthDayMounth" name="birthDayMounth"
                                        placeholder="Mounth" pattern="0[1-9]|1[012]" required/>
-                            </div>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control" id="birthDayYear" name="birthDayYear"
+                            <%--</div>--%>
+                            <%--<div class="col-md-4">--%>
+                                <input type="text" class="form-control margin-10" id="birthDayYear" name="birthDayYear"
                                        placeholder="Year" pattern="(19|20)\d\d" required/>
-                            </div>
-                        </div>
+                            <%--</div>--%>
+                        <%--</div>--%>
                         <input type="text" class="form-control margin-10" id="eMail" name="eMail"
                                placeholder="E-mail" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}^$|^.*@.*\..*$" required/>
                             <textarea class="form-control margin-10" id="hobbies" name="hobbies"
                                       placeholder="Hobbies" required></textarea>
                         <input type="text" class="form-control margin-10" id="profession" name="profession"
                                placeholder="Profession" required/>
+                        <input type="file" datatype="image/*;capture=camera" class="form-control margin-10" id="avatar" name="avatar" required/>
                         <button type="button" class="col-md-12 btn btn-primary margin-10"
                                 id="backButton">
                             Back

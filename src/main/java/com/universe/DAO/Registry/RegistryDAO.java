@@ -13,7 +13,9 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by boduill on 23.09.15.
@@ -33,5 +35,14 @@ public class RegistryDAO {
     @Transactional
     public void createAccount(Account account, Login login) {
         hibernateTemplate.persist(login);
+    }
+
+    @Transactional
+    public String checkLoginName(String name) {
+        System.out.println("name : " + name);
+        List<?> logins = new ArrayList<>();
+        logins = hibernateTemplate.find("from Login where login = ?", name);
+        System.out.println("list isEmpty() : " + logins.isEmpty());
+        return logins.isEmpty() ? "true" : "false";
     }
 }
