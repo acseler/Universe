@@ -45,7 +45,7 @@
                     </div>
                 </div>
             </form>
-            <form role="form" id="regForm" method="post" datatype="application/x-www-form-urlencoded">
+            <form role="form" id="regForm" method="post" enctype="multipart/form-data">
                 <div class="col-md-12">
                     <div id="enteringLogin">
                         <div>
@@ -105,7 +105,7 @@
                                       placeholder="Hobbies" required></textarea>
                         <input type="text" class="form-control margin-10" id="profession" name="profession"
                                placeholder="Profession" required/>
-                        <input type="file" datatype="image/*;capture=camera" class="form-control margin-10" id="avatar" name="avatar" required/>
+                        <input type="file" class="form-control margin-10" id="avatar" name="avatar" required/>
                         <button type="button" class="col-md-12 btn btn-primary margin-10"
                                 id="backButton">
                             Back

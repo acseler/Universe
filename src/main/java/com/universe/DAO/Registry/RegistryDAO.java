@@ -33,16 +33,14 @@ public class RegistryDAO {
     private HibernateTemplate hibernateTemplate;
 
     @Transactional
-    public void createAccount(Account account, Login login) {
+    public void createAccount(Login login) {
         hibernateTemplate.persist(login);
     }
 
     @Transactional
     public String checkLoginName(String name) {
-        System.out.println("name : " + name);
         List<?> logins = new ArrayList<>();
         logins = hibernateTemplate.find("from Login where login = ?", name);
-        System.out.println("list isEmpty() : " + logins.isEmpty());
         return logins.isEmpty() ? "true" : "false";
     }
 }

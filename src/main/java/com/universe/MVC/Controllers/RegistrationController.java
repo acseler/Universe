@@ -3,15 +3,19 @@ package com.universe.MVC.Controllers;
 import com.universe.DAO.Registry.RegistryDAO;
 import com.universe.DAO.tools.ControllerTools;
 import com.universe.Entity.Account;
+import com.universe.Entity.Login;
+import com.universe.Entity.RegistrationForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.util.GregorianCalendar;
+import javax.validation.Valid;
 
 @Controller
 @Scope("session")
@@ -36,34 +40,25 @@ public class RegistrationController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView doneRegistry(@ModelAttribute("regForm") Account account,
-                                     @RequestParam("universeName") String name,
-                                     @RequestParam("description") String description,
-                                     @RequestParam("birthDayDay") int day,
-                                     @RequestParam("birthDayMounth") int mounth,
-                                     @RequestParam("birthDayYear") int year,
-                                     @RequestParam("login") String login,
-                                     @RequestParam("password") String password,
-                                     @RequestHeader(value = "image/*;capture=camera") String avatar,
+    public ModelAndView doneRegistry(@Valid RegistrationForm registrationForm,
+                                     BindingResult bindingResult,
+                                     @RequestParam(value = "avatar", required = true) MultipartFile avatar,
                                      HttpSession session) {
-        account.setUniverse(ControllerTools.fillUniverseFields(name, description));
-        account.setBirthDay(new GregorianCalendar(year, mounth - 1, day).getTime());
-        System.out.println(avatar.getClass() + " !!!!!!");
-        System.out.println(avatar);
-        registryDAO.createAccount(account, ControllerTools.fillLoginFields(login, password, account));
+
+        Login login = ControllerTools.fillLoginFields(registrationForm);
+        Account account = login.getAccount();
         session.setAttribute("account", account);
+        registryDAO.createAccount(login);
         return new ModelAndView("home", "account", account);
     }
 
     @RequestMapping(value = "/checkLogin/{login}", method = RequestMethod.GET)
     public @ResponseBody String checkLogin(@PathVariable String login) {
-        System.out.println("login mvc : " + login);
         return registryDAO.checkLoginName(login);
     }
 
     @RequestMapping(value = "/checkLogin/{login}", method = RequestMethod.POST)
     public @ResponseBody String checkLoginPost(@PathVariable String login) {
-        System.out.println("login mvc : " + login);
         return registryDAO.checkLoginName(login);
     }
 
