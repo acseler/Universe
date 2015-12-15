@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 
 /**
  * Created by boduill on 14.12.15.
+ * Entity for Edit user profile form
  */
 @Entity
 public class EditProfileForm {

@@ -1,6 +1,6 @@
 package com.universe.MVC.Controllers;
 
-import com.universe.DAO.Registry.LoginingDAO;
+import com.universe.DAO.Registry.LoginDAO;
 import com.universe.Entity.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -11,12 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 /**
 * Created by boduill on 08.12.15.
@@ -27,7 +24,7 @@ import java.util.Map;
 public class LoginController {
 
     @Autowired
-    private LoginingDAO loginingDAO;
+    private LoginDAO loginDAO;
 
     @Autowired
     private ResourceBundleMessageSource messageSource;
@@ -37,7 +34,7 @@ public class LoginController {
                                            @RequestParam("auPassword") String password,
                                            HttpSession session,
                                            RedirectAttributes redirectAttributes) {
-        Account account = loginingDAO.checkLoginAndPassword(login, password);
+        Account account = loginDAO.checkLoginAndPassword(login, password);
         if (null != account) {
             session.setAttribute("account", account);
             return new ModelAndView("home", "account", account);

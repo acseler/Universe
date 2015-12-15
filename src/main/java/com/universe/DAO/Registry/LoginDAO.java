@@ -10,12 +10,19 @@ import java.util.List;
 
 /**
  * Created by boduill on 07.12.15.
+ * DAO class for user authorization
  */
 @Repository
-public class LoginingDAO {
+public class LoginDAO {
     @Autowired
     private HibernateTemplate hibernateTemplate;
 
+    /**
+     * Checking login and password
+     * @param login - login
+     * @param password - password
+     * @return - Account entity
+     */
     public Account checkLoginAndPassword(String login, String password) {
         Login loginEn = null;
         if (login.isEmpty() || password.isEmpty()) {
@@ -23,7 +30,6 @@ public class LoginingDAO {
         } else {
             loginEn = hibernateTemplate.get(Login.class, login);
         }
-        System.out.println(loginEn);
         if (null == loginEn) {
             return null;
         } else {

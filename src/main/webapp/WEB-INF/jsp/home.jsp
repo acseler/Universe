@@ -22,7 +22,7 @@
         <div class="col-lg-9 col-md-9 margin-10">
             <div class="row">
                 <div class="col-lg-4 col-md-4">
-                    <img src="/pages/img/ava.jpg" alt="Avatar" class="img-responsive img-rounded"/>
+                    <img src="${account.base64}" alt="Avatar" class="img-responsive img-rounded"/>
                     <a href="/edit"><button type="button" class="col-md-12 btn btn-default margin-10">Edit profile</button></a>
                 </div>
                 <div class="col-md-8">

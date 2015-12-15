@@ -1,16 +1,15 @@
 package com.universe.Entity;
 
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by boduill on 01.10.15.
+ * Entity for accounts table
  */
 @Entity
 @Table(name = "ACCOUNTS")
@@ -123,6 +122,10 @@ public class Account implements Serializable{
 
     public void setAvatar(byte[] avatar) {
         this.avatar = avatar;
+    }
+
+    public String getBase64(){
+        return "data:image/png;base64," + Base64.encode(avatar);
     }
 
     @Override

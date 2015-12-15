@@ -49,11 +49,9 @@ public class EditController {
             return new ModelAndView("wellcome");
         }
         account = ControllerTools.editUserProfile(account, editProdfileForm);
-        System.out.println(editProdfileForm);
-        System.out.println(account);
-        System.out.println("file name : " + avatar.getOriginalFilename());
-        System.out.println("Content type " + avatar.getContentType());
-        ControllerTools.saveImage(avatar);
+        if (!avatar.isEmpty()) {
+            account.setAvatar(avatar.getBytes());
+        }
         editProfileDAO.changeUserProfile(account);
         return new ModelAndView("edit", "account", account);
     }

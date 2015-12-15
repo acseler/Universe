@@ -24,17 +24,19 @@ CREATE TABLE accounts (
 -- 	CONSTRAINT UNIVERSE_CONSTRAINT FOREIGN KEY (un_id) REFERENCES universe(un_id)
 );
 
+CREATE TABLE friends (
+	acc_id BIGINT PRIMARY KEY REFERENCES accounts(acc_id),
+	friend BIGINT REFERENCES accounts(acc_id),
+	invite char(1) CHECK (invite IN ('a', 'f')),
+	status VARCHAR(15) CHECK (status IN ('wait', 'friends'))
+);
+
 CREATE TABLE logins (
 	login VARCHAR(100) PRIMARY KEY,
 	password VARCHAR(100),
 	acc_id BIGINT REFERENCES accounts(acc_id)
 -- 	for HSQLDB
 -- 	CONSTRAINT UNIVERSE_CONSTRAINT FOREIGN KEY (acc_id) REFERENCES accounts(acc_id)
-);
-
-CREATE TABLE friends (
-	user_id BIGINT REFERENCES accounts(acc_id) NOT NULL,
-	friends_ids BIGINT[] NOT NULL
 );
 
 CREATE TABLE messages (

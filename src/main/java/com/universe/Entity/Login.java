@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 /**
  * Created by boduill on 04.12.15.
+ * Entity for logins table
  */
 @Entity
 @Table(name = "LOGINS")

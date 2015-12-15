@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by boduill on 14.12.15.
+ * DAO class for editing user profile
  */
 @Repository
 public class EditProfileDAO {

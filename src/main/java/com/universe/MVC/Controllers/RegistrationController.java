@@ -33,7 +33,6 @@ public class RegistrationController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getWellcomePage(HttpSession session) {
-        System.out.println((Account) session.getAttribute("account"));
         if (null != session.getAttribute("account")) {
             return new ModelAndView("home", "account", (Account) session.getAttribute("account"));
         }
@@ -52,7 +51,6 @@ public class RegistrationController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(avatar.getOriginalFilename());
         Account account = login.getAccount();
         session.setAttribute("account", account);
         registryDAO.createAccount(login);

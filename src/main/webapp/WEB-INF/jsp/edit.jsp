@@ -22,7 +22,7 @@
         <div class="col-lg-9 col-md-9 margin-10">
             <div class="row">
                 <div class="col-lg-4 col-md-4">
-                    <img src="/pages/img/ava.jpg" alt="Avatar" class="img-responsive img-rounded"/>
+                    <img src="${account.base64}" alt="Avatar" class="img-responsive img-rounded"/>
                 </div>
                 <div class="col-md-8">
                     <form action="/edit" method="post" role="form" id="editProfileForm" enctype="multipart/form-data">
