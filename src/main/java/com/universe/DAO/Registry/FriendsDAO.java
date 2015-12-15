@@ -13,5 +13,7 @@ public class FriendsDAO {
     @Autowired
     private HibernateTemplate hibernateTemplate;
 
+    public void addFriend() {
 
+    }
 }

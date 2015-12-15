@@ -16,13 +16,7 @@ import java.util.*;
 public class Account implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "idGenerator")
-    @TableGenerator(
-            name="idGenerator",
-            table="IDS",
-            pkColumnName = "table_name",
-            valueColumnName = "id_value",
-            allocationSize=100
-    )
+
     @Column(name = "ACC_ID")
     private long id;
 

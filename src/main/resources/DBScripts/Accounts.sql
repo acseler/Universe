@@ -25,9 +25,10 @@ CREATE TABLE accounts (
 );
 
 CREATE TABLE friends (
-	acc_id BIGINT PRIMARY KEY REFERENCES accounts(acc_id),
+	fr_id BIGINT PRIMARY KEY,
+	acc_id BIGINT REFERENCES accounts(acc_id),
 	friend BIGINT REFERENCES accounts(acc_id),
-	invite char(1) CHECK (invite IN ('a', 'f')),
+	invite char(2) CHECK (invite IN ('af', 'fa')),
 	status VARCHAR(15) CHECK (status IN ('wait', 'friends'))
 );
 
