@@ -50,6 +50,16 @@ public class Account implements Serializable{
     @JoinColumn(name = "UN_ID")
     private Universe universe;
 
+    @Column(name = "AVATAR")
+    private byte[] avatar;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -105,6 +115,14 @@ public class Account implements Serializable{
 
     public void setUniverse(Universe universe) {
         this.universe = universe;
+    }
+
+    public byte[] getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(byte[] avatar) {
+        this.avatar = avatar;
     }
 
     @Override

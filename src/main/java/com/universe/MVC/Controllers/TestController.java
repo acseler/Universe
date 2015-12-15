@@ -11,8 +11,8 @@
 //import java.util.Date;
 //
 ///**
-// * Created by boduill on 20.09.15.
-// */
+//* Created by boduill on 20.09.15.
+//*/
 //@Controller
 //@RequestMapping(value = "/")
 //public class TestController {
@@ -28,6 +28,6 @@
 //        Universe universe = new Universe();
 //        universe.setUnverseName("Onepunch Man");
 //        universe.setDescription("About Onepunch Man");
-//        return new ModelAndView("universe", "universe", universe);
+//        return new ModelAndView("home", "account", account);
 //    }
 //}

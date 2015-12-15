@@ -16,26 +16,14 @@
 <body>
 
 <div class="container">
+<jsp:include page="patterns/header.jsp"/>
     <div class="row">
-        <div class="col-md-12">
-            <div class="header">
-                <img src="/pages/img/Logo.png" alt="Logo"/>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <nav class="col-lg-2 col-md-2">
-            <ul class="nav nav-pills nav-stacked nav-border">
-                <li><a href="#">My page</a></li>
-                <li><a href="#">Universe</a></li>
-                <li><a href="#">Friends</a></li>
-                <li><a href="#">Messages</a></li>
-            </ul>
-        </nav>
-        <div class="col-lg-10 col-md-10">
+        <jsp:include page="patterns/navigation.jsp"/>
+        <div class="col-lg-9 col-md-9 margin-10">
             <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <img src="/pages/img/ava.jpg" alt="Avatar" class="img-responsive img-rounded"/>
+                    <a href="/edit"><button type="button" class="col-md-12 btn btn-default margin-10">Edit profile</button></a>
                 </div>
                 <div class="col-md-8">
                     <h3 class="h3">${account.firstName} ${account.lastName}</h3>

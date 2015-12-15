@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.IOException;
 
 @Controller
 @Scope("session")
@@ -34,7 +35,7 @@ public class RegistrationController {
     public ModelAndView getWellcomePage(HttpSession session) {
         System.out.println((Account) session.getAttribute("account"));
         if (null != session.getAttribute("account")) {
-            return new ModelAndView("home", "account", session.getAttribute("account"));
+            return new ModelAndView("home", "account", (Account) session.getAttribute("account"));
         }
         return new ModelAndView("wellcome");
     }
@@ -46,6 +47,12 @@ public class RegistrationController {
                                      HttpSession session) {
 
         Login login = ControllerTools.fillLoginFields(registrationForm);
+        try {
+            login.getAccount().setAvatar(avatar.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(avatar.getOriginalFilename());
         Account account = login.getAccount();
         session.setAttribute("account", account);
         registryDAO.createAccount(login);

@@ -18,6 +18,7 @@ CREATE TABLE accounts (
 	email varchar(100) NOT NULL,
 	proffession varchar(50),
 	hobbies VARCHAR(1024),
+	avatar bytea,
 	un_id int REFERENCES universe(un_id)
 -- 	for HSQLDB
 -- 	CONSTRAINT UNIVERSE_CONSTRAINT FOREIGN KEY (un_id) REFERENCES universe(un_id)

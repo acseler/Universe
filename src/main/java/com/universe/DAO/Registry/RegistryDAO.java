@@ -22,19 +22,20 @@ import java.util.List;
  */
 @Repository
 public class RegistryDAO {
-
-    @Autowired
-    private SessionFactory sessionFactory;
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
-    @Autowired
-    private TableIdHelper tableIdHelper;
+//
+//    @Autowired
+//    private SessionFactory sessionFactory;
+//    @Autowired
+//    private JdbcTemplate jdbcTemplate;
+//    @Autowired
+//    private TableIdHelper tableIdHelper;
     @Autowired
     private HibernateTemplate hibernateTemplate;
 
     @Transactional
     public void createAccount(Login login) {
         hibernateTemplate.persist(login);
+
     }
 
     @Transactional

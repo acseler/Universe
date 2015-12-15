@@ -12,7 +12,7 @@ import java.util.List;
  * Created by boduill on 07.12.15.
  */
 @Repository
-public class Logining {
+public class LoginingDAO {
     @Autowired
     private HibernateTemplate hibernateTemplate;
 
@@ -23,8 +23,13 @@ public class Logining {
         } else {
             loginEn = hibernateTemplate.get(Login.class, login);
         }
-        if (loginEn.getLogin().equals(login) && loginEn.getPassword().equals(password)) {
-            return loginEn.getAccount();
+        System.out.println(loginEn);
+        if (null == loginEn) {
+            return null;
+        } else {
+            if (loginEn.getLogin().equals(login) && loginEn.getPassword().equals(password)) {
+                return loginEn.getAccount();
+            }
         }
         return null;
     }

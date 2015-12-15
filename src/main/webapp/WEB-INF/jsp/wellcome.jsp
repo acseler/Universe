@@ -13,13 +13,7 @@
 </head>
 <body>
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="header">
-                <img src="/pages/img/Logo.png" alt="Logo"/>
-            </div>
-        </div>
-    </div>
+    <jsp:include page="patterns/header.jsp"/>
     <div class="row">
         <h1 class="h1 text-center">Wellcome to Create your Universe</h1>
 
@@ -34,9 +28,9 @@
             <form role="form" id="logForm" method="post" action="home">
                 <div class="form-group">
                     <div class="col-md-12">
-                        <input type="text" class="form-control" id="login" name="auLogin"
+                        <input type="text" class="form-control margin-10" id="login" name="auLogin"
                                placeholder="Enter your login"/>
-                        <input type="text" id="password" name="auPassword" class="form-control margin-10"
+                        <input type="password" id="password" name="auPassword" class="form-control margin-10"
                                placeholder="Enter your password"/>
                         <button type="submit" class="btn btn-primary col-md-12 margin-10">Sign in</button>
                         <div class="btn btn-default col-md-12 margin-10" id="regButton">
