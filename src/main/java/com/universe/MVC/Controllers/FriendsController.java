@@ -26,7 +26,7 @@ public class FriendsController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getFriendsList(HttpSession session) {
         Account account = (Account) session.getAttribute("account");
-        return null;
+        return new ModelAndView("friends", "friendList", friendsDAO.getAccountFriends(account));
     }
 
     @RequestMapping(method = RequestMethod.POST)

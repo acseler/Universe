@@ -29,6 +29,7 @@
                 <value>com.universe.Entity.Account</value>
                 <value>com.universe.Entity.Universe</value>
                 <value>com.universe.Entity.Login</value>
+                <value>com.universe.Entity.Friend</value>
             </list>
         </property>
         <property name="hibernateProperties">

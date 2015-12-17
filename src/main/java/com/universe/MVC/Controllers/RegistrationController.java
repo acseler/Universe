@@ -1,7 +1,7 @@
 package com.universe.MVC.Controllers;
 
 import com.universe.DAO.Registry.RegistryDAO;
-import com.universe.DAO.tools.ControllerTools;
+import com.universe.Tools.ControllerTools;
 import com.universe.Entity.Account;
 import com.universe.Entity.Login;
 import com.universe.Entity.RegistrationForm;
@@ -54,6 +54,7 @@ public class RegistrationController {
         Account account = login.getAccount();
         session.setAttribute("account", account);
         registryDAO.createAccount(login);
+        System.out.println(account);
         return new ModelAndView("home", "account", account);
     }
 

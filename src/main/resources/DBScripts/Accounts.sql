@@ -29,7 +29,7 @@ CREATE TABLE friends (
 	acc_id BIGINT REFERENCES accounts(acc_id),
 	friend BIGINT REFERENCES accounts(acc_id),
 	invite char(2) CHECK (invite IN ('af', 'fa')),
-	status VARCHAR(15) CHECK (status IN ('wait', 'friends'))
+	status VARCHAR(15) CHECK (status IN ('wait', 'friends', 'apply'))
 );
 
 CREATE TABLE logins (

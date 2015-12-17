@@ -16,7 +16,13 @@ import java.util.*;
 public class Account implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "idGenerator")
-
+    @TableGenerator(
+            name="idGenerator",
+            table="IDS",
+            pkColumnName = "table_name",
+            valueColumnName = "id_value",
+            allocationSize=100
+    )
     @Column(name = "ACC_ID")
     private long id;
 
@@ -45,6 +51,12 @@ public class Account implements Serializable{
 
     @Column(name = "AVATAR")
     private byte[] avatar;
+
+    /**
+     * Can containt only 'wait', 'friends', 'apply' values
+     */
+    @Transient
+    private String status;
 
     public long getId() {
         return id;
@@ -118,10 +130,17 @@ public class Account implements Serializable{
         this.avatar = avatar;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public String getBase64(){
         return "data:image/png;base64," + Base64.encode(avatar);
     }
-
     @Override
     public String toString() {
         return "Account{" +

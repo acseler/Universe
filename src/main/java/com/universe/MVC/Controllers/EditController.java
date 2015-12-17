@@ -1,7 +1,7 @@
 package com.universe.MVC.Controllers;
 
 import com.universe.DAO.Registry.EditProfileDAO;
-import com.universe.DAO.tools.ControllerTools;
+import com.universe.Tools.ControllerTools;
 import com.universe.Entity.Account;
 import com.universe.Entity.EditProfileForm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.io.File;
 import java.io.IOException;
 
 /**

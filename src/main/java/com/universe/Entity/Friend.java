@@ -21,21 +21,20 @@ public class Friend {
     @Column(name = "FR_ID")
     private long id;
 
-    @OneToOne()
-    @JoinColumn(name = "ACC_ID")
-    private Account accId;
+    @Column(name = "ACC_ID")
+    private long accId;
 
-    @OneToOne
-    @JoinColumn(name = "ACC_ID")
-    private Account friend;
+    @Column(name = "FRIEND")
+    private long friendId;
 
     /** Allowable values : af(from account to friend),
      *                     fa(from friend to account)*/
     @Column(name = "INVITE")
     private String invite;
 
-    /** Allowable values : wait(account or friend wait for apply),
-     *                     friends(request applied)*/
+    /** Allowable values : wait(account wait for apply),
+     *                     friends(request applied),
+     *                     apply(account decide apply or cancel)*/
     @Column(name = "STATUS")
     private String status;
 
@@ -47,20 +46,20 @@ public class Friend {
         this.id = id;
     }
 
-    public Account getAccId() {
+    public long getAccId() {
         return accId;
     }
 
-    public void setAccId(Account accId) {
+    public void setAccId(long accId) {
         this.accId = accId;
     }
 
-    public Account getFriend() {
-        return friend;
+    public long getFriend() {
+        return friendId;
     }
 
-    public void setFriend(Account friend) {
-        this.friend = friend;
+    public void setFriend(long friend) {
+        this.friendId = friend;
     }
 
     public String getInvite() {
@@ -77,5 +76,16 @@ public class Friend {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Friend{" +
+                "id=" + id +
+                ", accId=" + accId +
+                ", friend=" + friendId +
+                ", invite='" + invite + '\'' +
+                ", status='" + status + '\'' +
+                '}';
     }
 }
