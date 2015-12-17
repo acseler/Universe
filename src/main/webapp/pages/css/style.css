@@ -29,6 +29,13 @@
     padding: 0;
 }
 
+.border-of-entity {
+    border-top: solid #BB9DEF 1px;
+    border-left: solid #BB9DEF 1px;
+    border-right: solid #BB9DEF 1px;
+}
+
+
 hr {
     height: 2px;
     background-color:#555;

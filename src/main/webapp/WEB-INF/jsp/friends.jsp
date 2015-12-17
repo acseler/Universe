@@ -20,17 +20,30 @@
     <div class="row">
         <jsp:include page="patterns/navigation.jsp"/>
         <div class="col-lg-9 col-md-9 margin-10">
+            <div class="row border-of-entity">
+                <div class="h4 text-center">You have ${friendList.size()} friends</div>
+            </div>
             <div class="row">
-                <c:forEach items="${friendList}" var="friend">
-                    <p>${friend.firstName}</p>
 
-                    <p>${friend.lastName}</p>
+                <%--<div class="border-of-entity">--%>
+                    <c:forEach items="${friendList}" var="friend">
+                        <div class="card">
+                            <img class="card-img-top img-responsive img-rounded" src="${friend.base64}"
+                                 alt="Card image cap" width="128" height="128">
 
-                    <p>${friend.eMail}</p>
-                    <img src="${friend.base64}" alt="ava"/>
+                            <div class="card-block">
+                                <h4 class="card-title">Card title</h4>
 
-                    <p>${friend.status}</p>
-                </c:forEach>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of
+                                    the card's content.</p>
+                                <a href="#" class="btn btn-primary">Button</a>
+                            </div>
+                        </div>
+                    </c:forEach>
+                    </div>
+                <%--</div>--%>
+
             </div>
         </div>
     </div>
