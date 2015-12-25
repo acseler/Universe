@@ -23,33 +23,103 @@
             <div class="row border-of-entity">
                 <div class="h4 text-center">You have ${friendList.size()} friends</div>
             </div>
-            <div class="row">
 
-                <%--<div class="border-of-entity">--%>
-                    <c:forEach items="${friendList}" var="friend">
-                        <div class="card">
-                            <img class="card-img-top img-responsive img-rounded" src="${friend.base64}"
-                                 alt="Card image cap" width="128" height="128">
-
-                            <div class="card-block">
-                                <h4 class="card-title">Card title</h4>
-
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of
-                                    the card's content.</p>
-                                <a href="#" class="btn btn-primary">Button</a>
-                            </div>
+            <c:forEach items="${friendList}" var="friend">
+                <div class="row">
+                    <div class="border-of-entity col-md-12">
+                        <div class=" col-md-3 padding-0">
+                            <img src="${friend.base64}" alt="" width="128" height="128"
+                                 class="img-responsive img-rounded left"/>
                         </div>
-                    </c:forEach>
-                    </div>
-                <%--</div>--%>
+                        <div class="col-md-5">
+                            <h3 class="text-left margin-0">${friend.firstName} ${friend.lastName}</h3>
 
+                            <div class="h5"> ${friend.profession}</div>
+                            <div class="h5"> ${friend.hobbies}</div>
+                            <div class="h5"><fmt:formatDate value="${friend.birthDay}" type="Date"/></div>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="col-md-12 btn btn-primary" data-toggle="modal"
+                                    data-target="#SendMessageDialog"
+                                    onclick=setModalFields(${friend.json})>
+                                Send message
+                            </button>
+                            <button type="button" class="col-md-12 btn btn-default margin-10" data-toggle="modal"
+                                    data-target="#DeleteFriendDialog"
+                                    onclick="setDeleteFriendId(${account.id} ,${friend.id})">
+                                Delete from friends
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </c:forEach>
+
+        </div>
+    </div>
+    <!-- Modal send message -->
+    <div class="modal fade" id="SendMessageDialog" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Send message</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="messageTo">Send to : </label>
+
+                            <div class="h4" id="messageTo"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="message" class="control-label">Message</label>
+                            <textarea class="form-control" id="message"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="button" id="send" class="form-control btn btn-primary" value="Send"/>
+                        </div>
+
+                    </div>
+                </div>
             </div>
+
+        </div>
+    </div>
+    <!-- Modal delete friend-->
+    <div class="modal fade" id="DeleteFriendDialog" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><span class="text-center">Are you sure?</span></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-offset-2 col-md-8">
+                            <div class="row">
+                                <button type="button" class="col-md-5 btn btn-primary" id="DeleteFriendButton">Delete</button>
+                                <div class="col-md-2"></div>
+                                <button type="button" class="col-md-5 btn btn-default" id="cancelDeleteFriend">Cancel</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
 <script src="/pages/scripts/jquery-1.11.3.min.js"></script>
 <script src="/pages/scripts/bootstrap.min.js"></script>
-<script src="/pages/scripts/script.js"></script>
+<script src="/pages/scripts/friends.js"></script>
 </body>
 </html>

@@ -1,9 +1,14 @@
 package com.universe.Entity;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JavaType;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.Expose;
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.persistence.metamodel.Type;
 import java.io.Serializable;
 import java.util.*;
 
@@ -13,25 +18,31 @@ import java.util.*;
  */
 @Entity
 @Table(name = "ACCOUNTS")
-public class Account implements Serializable{
+
+public class Account implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "idGenerator")
     @TableGenerator(
-            name="idGenerator",
-            table="IDS",
+            name = "idGenerator",
+            table = "IDS",
             pkColumnName = "table_name",
             valueColumnName = "id_value",
-            allocationSize=100
+            allocationSize = 100
     )
     @Column(name = "ACC_ID")
+    @Expose
     private long id;
 
+    @Expose
     @Column(name = "FIRST_NAME")
     private String firstName;
 
+    @Expose
     @Column(name = "LAST_NAME")
     private String lastName;
 
+    @Expose
     @Column(name = "EMAIL")
     private String eMail;
 
@@ -138,19 +149,24 @@ public class Account implements Serializable{
         this.status = status;
     }
 
-    public String getBase64(){
+    public String getBase64() {
         return "data:image/png;base64," + Base64.encode(avatar);
     }
+
+    public String getJson() throws JsonProcessingException {
+        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+        String result = gson.toJson(this);
+//        result = result.replaceAll("(\".?(?=:))", "");
+//        result = result.replaceAll(",\"", ",");
+//        result = result.replaceAll("[{]\"", "{");
+//        result = result.replaceAll("\"", "\'");
+//        System.out.println(result);
+        System.out.println(result);
+        return result;
+    }
+
     @Override
     public String toString() {
-        return "Account{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", eMail='" + eMail + '\'' +
-                ", birthDay=" + birthDay +
-                ", profession='" + profession + '\'' +
-                ", hobbies='" + hobbies + '\'' +
-                ", universe=" + universe + '}';
+        return "{id : " + id + "}";
     }
 }

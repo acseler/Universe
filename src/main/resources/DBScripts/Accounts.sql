@@ -42,9 +42,10 @@ CREATE TABLE logins (
 
 CREATE TABLE messages (
 	mess_id BIGINT PRIMARY KEY NOT NULL,
-	from_user BIGINT REFERENCES accounts(acc_id) NOT NULL,
-	to_user BIGINT REFERENCES accounts(acc_id) NOT NULL,
-	text_message VARCHAR(2048) NOT NULL
+	from_user BIGINT REFERENCES accounts(acc_id),
+	to_user BIGINT REFERENCES accounts(acc_id),
+	text_message VARCHAR(2048) NOT NULL,
+	message_time date NOT NULL
 );
 
 

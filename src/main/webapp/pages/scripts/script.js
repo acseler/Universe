@@ -32,7 +32,7 @@ $(document).ready(function () {
             $("#regPasswordConfirm").parent().addClass("has-error");
         } else {
             if ($("#regPassword").val() == $("#regPasswordConfirm").val()) {
-                $.post( "/checkLogin/" + $("#regLogin").val() + ".json", function( data ) {
+                $.post("/checkLogin/" + $("#regLogin").val() + ".json", function (data) {
                     if (data == "true") {
                         $("#enteringLogin").slideUp();
                         $("#universeInfo").fadeIn();
@@ -50,7 +50,7 @@ $(document).ready(function () {
     $("#continueButtonSecondStep").click(function () {
         if (isEmpty($("#universeName").val())) {
             $("#universeName").parent().addClass("has-error");
-        } else if (isEmpty($("#description").val())){
+        } else if (isEmpty($("#description").val())) {
             $("#universeName").parent().removeClass("has-error");
             $("#description").parent().addClass("has-error");
         } else {
@@ -66,66 +66,6 @@ $(document).ready(function () {
         $("#enteringInfo").fadeOut();
     });
 
-
-
-    //$("#registrationFinal").click(function() {
-    //    if (isEmpty($("#firstName").val())) {
-    //        $("#firstName").parent().addClass("has-error");
-    //    } else if (isEmpty($("#lastName").val())) {
-    //        $("#firstName").parent().removeClass("has-error");
-    //        $("#lastName").parent().addClass("has-error");
-    //    } else if (isEmpty($("#birthDayDay").val())) {
-    //        $("#firstName").parent().removeClass("has-error");
-    //        $("#lastName").parent().removeClass("has-error");
-    //        $("#birthDayDay").parent().addClass("has-error");
-    //    } else if (isEmpty($("#birthDayMounth").val())) {
-    //        $("#firstName").parent().removeClass("has-error");
-    //        $("#lastName").parent().removeClass("has-error");
-    //        $("#birthDayDay").parent().removeClass("has-error");
-    //        $("#birthDayMounth").parent().addClass("has-error");
-    //    } else if (isEmpty($("#birthDayYear").val())) {
-    //        $("#firstName").parent().removeClass("has-error");
-    //        $("#lastName").parent().removeClass("has-error");
-    //        $("#birthDayDay").parent().removeClass("has-error");
-    //        $("#birthDayMounth").parent().removeClass("has-error");
-    //        $("#birthDayYear").parent().addClass("has-error");
-    //    } else if (isEmpty($("#eMail").val())) {
-    //        $("#firstName").parent().removeClass("has-error");
-    //        $("#lastName").parent().removeClass("has-error");
-    //        $("#birthDayDay").parent().removeClass("has-error");
-    //        $("#birthDayMounth").parent().removeClass("has-error");
-    //        $("#birthDayYear").parent().removeClass("has-error");
-    //        //$("#eMail").parent().addClass("has-error");
-    //    } else if (isEmpty($("#hobbies").val())) {
-    //        $("#firstName").parent().removeClass("has-error");
-    //        $("#lastName").parent().removeClass("has-error");
-    //        $("#birthDayDay").parent().removeClass("has-error");
-    //        $("#birthDayMounth").parent().removeClass("has-error");
-    //        $("#birthDayYear").parent().removeClass("has-error");
-    //        $("#eMail").parent().removeClass("has-error");
-    //        $("#hobbies").parent().addClass("has-error");
-    //    } else if (isEmpty($("#profession").val())) {
-    //        $("#firstName").parent().removeClass("has-error");
-    //        $("#lastName").parent().removeClass("has-error");
-    //        $("#birthDayDay").parent().removeClass("has-error");
-    //        $("#birthDayMounth").parent().removeClass("has-error");
-    //        $("#birthDayYear").parent().removeClass("has-error");
-    //        $("#eMail").parent().removeClass("has-error");
-    //        $("#hobbies").parent().removeClass("has-error");
-    //        $("#profession").parent().addClass("has-error");
-    //    } else {
-    //        $("#firstName").parent().removeClass("has-error");
-    //        $("#lastName").parent().removeClass("has-error");
-    //        $("#birthDayDay").parent().removeClass("has-error");
-    //        $("#birthDayMounth").parent().removeClass("has-error");
-    //        $("#birthDayYear").parent().removeClass("has-error");
-    //        $("#eMail").parent().removeClass("has-error");
-    //        $("#hobbies").parent().removeClass("has-error");
-    //        $("#profession").parent().removeClass("has-error");
-    //        $("regForm").submit();
-    //    }
-    //});
-
     var isEmpty = function (value) {
         if (!value) {
             return true;
@@ -134,7 +74,9 @@ $(document).ready(function () {
         } else {
             return false;
         }
-    }
+    };
+
+
 });
 
 
