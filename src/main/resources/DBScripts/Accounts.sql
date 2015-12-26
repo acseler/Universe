@@ -41,11 +41,19 @@ CREATE TABLE logins (
 );
 
 CREATE TABLE messages (
-	mess_id BIGINT PRIMARY KEY NOT NULL,
+	mess_id BIGINT PRIMARY KEY,
 	from_user BIGINT REFERENCES accounts(acc_id),
 	to_user BIGINT REFERENCES accounts(acc_id),
 	text_message VARCHAR(2048) NOT NULL,
-	message_time date NOT NULL
+	message_time date NOT NULL,
+	was_read char(1) CHECK(was_read IN ('y', 'n'))
 );
+
+CREATE TABLE messages_info(
+	mess_info_id BIGINT PRIMARY KEY,
+	mess_count INTEGER NOT NULL DEFAULT 0,
+	acc_id BIGINT REFERENCES accounts(acc_id)
+);
+
 
 

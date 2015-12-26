@@ -1,6 +1,6 @@
 package com.universe.MVC.Controllers;
 
-import com.universe.DAO.Registry.EditProfileDAO;
+import com.universe.DAO.DAOLayer.EditProfileDAO;
 import com.universe.Tools.ControllerTools;
 import com.universe.Entity.Account;
 import com.universe.Entity.EditProfileForm;
@@ -26,6 +26,8 @@ import java.io.IOException;
 @RequestMapping("/edit")
 public class EditController {
 
+    @Autowired ControllerTools controllerTools;
+
     @Autowired
     private EditProfileDAO editProfileDAO;
 
@@ -47,7 +49,7 @@ public class EditController {
         if (null == account) {
             return new ModelAndView("wellcome");
         }
-        account = ControllerTools.editUserProfile(account, editProdfileForm);
+        account = controllerTools.editUserProfile(account, editProdfileForm);
         if (!avatar.isEmpty()) {
             account.setAvatar(avatar.getBytes());
         }

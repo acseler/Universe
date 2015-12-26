@@ -1,14 +1,12 @@
 package com.universe.Entity;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JavaType;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
 import javax.persistence.*;
-import javax.persistence.metamodel.Type;
 import java.io.Serializable;
 import java.util.*;
 

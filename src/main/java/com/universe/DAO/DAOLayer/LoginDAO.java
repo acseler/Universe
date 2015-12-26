@@ -1,12 +1,10 @@
-package com.universe.DAO.Registry;
+package com.universe.DAO.DAOLayer;
 
 import com.universe.Entity.Account;
 import com.universe.Entity.Login;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 /**
  * Created by boduill on 07.12.15.

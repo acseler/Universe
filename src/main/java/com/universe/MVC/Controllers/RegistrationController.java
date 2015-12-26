@@ -1,6 +1,6 @@
 package com.universe.MVC.Controllers;
 
-import com.universe.DAO.Registry.RegistryDAO;
+import com.universe.DAO.DAOLayer.RegistryDAO;
 import com.universe.Tools.ControllerTools;
 import com.universe.Entity.Account;
 import com.universe.Entity.Login;
@@ -26,7 +26,8 @@ public class RegistrationController {
     @Autowired
     private RegistryDAO registryDAO;
 
-
+    @Autowired
+    private ControllerTools controllerTools;
 
     @Autowired
     private ResourceBundleMessageSource messageSource;
@@ -45,17 +46,20 @@ public class RegistrationController {
                                      @RequestParam(value = "avatar", required = true) MultipartFile avatar,
                                      HttpSession session) {
 
-        Login login = ControllerTools.fillLoginFields(registrationForm);
+        Login login = controllerTools.fillLoginFields(registrationForm);
         try {
             login.getAccount().setAvatar(avatar.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
         Account account = login.getAccount();
-        session.setAttribute("account", account);
-        registryDAO.createAccount(login);
-        System.out.println(account);
-        return new ModelAndView("home", "account", account);
+        if (registryDAO.createAccount(login, controllerTools.getNewMessageInfoForAccount(account))) {
+            session.setAttribute("account", account);
+            System.out.println(account);
+            return new ModelAndView("home", "account", account);
+        } else {
+            return new ModelAndView("wellcome");
+        }
     }
 
     @RequestMapping(value = "/checkLogin/{login}", method = RequestMethod.GET)

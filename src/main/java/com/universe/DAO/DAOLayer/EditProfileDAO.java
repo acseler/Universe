@@ -1,4 +1,4 @@
-package com.universe.DAO.Registry;
+package com.universe.DAO.DAOLayer;
 
 import com.universe.Entity.Account;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,7 @@
 package com.universe.Tools;
 
 import com.universe.Entity.*;
+import org.springframework.stereotype.Component;
 
 import java.util.GregorianCalendar;
 
@@ -8,6 +9,7 @@ import java.util.GregorianCalendar;
  * Created by boduill on 01.12.15.
  * Tools for controllers
  */
+@Component
 public class ControllerTools {
 
     /**
@@ -15,7 +17,7 @@ public class ControllerTools {
      * @param registrationForm - Registration form entity
      * @return - Universe entity
      */
-    private static Universe fillUniverseFields(RegistrationForm registrationForm) {
+    private Universe fillUniverseFields(RegistrationForm registrationForm) {
         Universe universe = new Universe();
         universe.setUnverseName(registrationForm.getUniverseName());
         universe.setDescription(registrationForm.getDescription());
@@ -29,7 +31,7 @@ public class ControllerTools {
      * @param registrationForm - Registration form entity
      * @return - Login entity
      */
-    public static Login fillLoginFields(RegistrationForm registrationForm) {
+    public Login fillLoginFields(RegistrationForm registrationForm) {
         Login loginEn = new Login();
         loginEn.setLogin(registrationForm.getLogin());
         loginEn.setPassword(registrationForm.getPassword());
@@ -42,7 +44,7 @@ public class ControllerTools {
      * @param registrationForm - Registration form entity
      * @return - Account entity
      */
-    private static Account fillAccountFields(RegistrationForm registrationForm) {
+    private Account fillAccountFields(RegistrationForm registrationForm) {
         Account account = new Account();
         account.setFirstName(registrationForm.getFirstName());
         account.setLastName(registrationForm.getLastName());
@@ -63,7 +65,7 @@ public class ControllerTools {
      * @param editProfileForm - EditProfileForm entity
      * @return - Account entity
      */
-    public static Account editUserProfile(Account account, EditProfileForm editProfileForm) {
+    public Account editUserProfile(Account account, EditProfileForm editProfileForm) {
         account.setFirstName(editProfileForm.getFirstName());
         account.setLastName(editProfileForm.getLastName());
         account.setBirthDay(new GregorianCalendar(editProfileForm.getBirthDayYear(),
@@ -74,14 +76,11 @@ public class ControllerTools {
         return account;
     }
 
-//    public static void saveImage(MultipartFile image) throws IOException {
-//        File convFile = new File(image.getOriginalFilename());
-//        convFile.createNewFile();
-//        FileOutputStream fos = new FileOutputStream(convFile);
-//        fos.write(image.getBytes());
-//        fos.flush();
-//        fos.close();
-////            return convFile;
-//    }
+    public MessageInfo getNewMessageInfoForAccount(Account account) {
+        MessageInfo messageInfo = new MessageInfo();
+        messageInfo.setMessCount(0);
+        return messageInfo;
+    }
+
 }
 

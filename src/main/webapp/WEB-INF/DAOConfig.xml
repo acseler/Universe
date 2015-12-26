@@ -30,6 +30,7 @@
                 <value>com.universe.Entity.Universe</value>
                 <value>com.universe.Entity.Login</value>
                 <value>com.universe.Entity.Friend</value>
+                <value>com.universe.Entity.MessageInfo</value>
             </list>
         </property>
         <property name="hibernateProperties">

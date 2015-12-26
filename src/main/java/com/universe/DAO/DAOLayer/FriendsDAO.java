@@ -1,14 +1,12 @@
-package com.universe.DAO.Registry;
+package com.universe.DAO.DAOLayer;
 
 import com.universe.Entity.Account;
 import com.universe.Entity.Friend;
 import com.universe.Tools.DAOTools;
-import org.hibernate.annotations.SourceType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.*;
 

@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * Created by boduill on 17.12.15.
+ * Class which helps DAO layer to do some operations
  */
 @Repository
 public class DAOTools {
@@ -20,6 +21,11 @@ public class DAOTools {
     @Autowired
     private HibernateTemplate hibernateTemplate;
 
+    /**
+     *
+     * @param friendList
+     * @return
+     */
     @Transactional
     public List<Account> getFriendsAccountsFromFriendList(List<Friend> friendList) {
         List<Account> list = new LinkedList<>();
