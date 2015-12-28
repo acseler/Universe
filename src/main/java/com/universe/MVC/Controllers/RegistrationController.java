@@ -1,5 +1,6 @@
 package com.universe.MVC.Controllers;
 
+import com.universe.DAO.DAOLayer.MessageInfoDAO;
 import com.universe.DAO.DAOLayer.RegistryDAO;
 import com.universe.Tools.ControllerTools;
 import com.universe.Entity.Account;
@@ -17,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @Scope("session")
@@ -27,6 +30,9 @@ public class RegistrationController {
     private RegistryDAO registryDAO;
 
     @Autowired
+    private MessageInfoDAO messageInfoDAO;
+
+    @Autowired
     private ControllerTools controllerTools;
 
     @Autowired
@@ -35,7 +41,11 @@ public class RegistrationController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getWellcomePage(HttpSession session) {
         if (null != session.getAttribute("account")) {
-            return new ModelAndView("home", "account", (Account) session.getAttribute("account"));
+            Map<String, Object> attributes = new HashMap<>();
+            Account account = (Account) session.getAttribute("account");
+            attributes.put("account", account);
+            attributes.put("messageInfo", messageInfoDAO.getMessageInfo(account));
+            return new ModelAndView("home", attributes);
         }
         return new ModelAndView("wellcome");
     }
@@ -54,9 +64,11 @@ public class RegistrationController {
         }
         Account account = login.getAccount();
         if (registryDAO.createAccount(login, controllerTools.getNewMessageInfoForAccount(account))) {
+            Map<String, Object> attributes = new HashMap<>();
             session.setAttribute("account", account);
-            System.out.println(account);
-            return new ModelAndView("home", "account", account);
+            attributes.put("account", account);
+            attributes.put("messageInfo", messageInfoDAO.getMessageInfo(account));
+            return new ModelAndView("home", attributes);
         } else {
             return new ModelAndView("wellcome");
         }

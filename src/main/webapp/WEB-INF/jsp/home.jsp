@@ -19,7 +19,7 @@
 <jsp:include page="patterns/header.jsp"/>
     <div class="row">
         <jsp:include page="patterns/navigation.jsp"/>
-        <div class="col-lg-9 col-md-9 margin-10">
+        <div class="col-lg-8 col-md-8 margin-10">
             <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <img src="${account.base64}" alt="Avatar" class="img-responsive img-rounded"/>

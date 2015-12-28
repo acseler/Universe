@@ -1,7 +1,10 @@
 package com.universe.MVC.Controllers;
 
 import com.universe.DAO.DAOLayer.LoginDAO;
+import com.universe.DAO.DAOLayer.MessageInfoDAO;
 import com.universe.Entity.Account;
+import com.universe.Entity.MessageInfo;
+import com.universe.Exceptions.MessageInfoExeption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.ResourceBundleMessageSource;
@@ -29,18 +32,26 @@ public class LoginController {
     private LoginDAO loginDAO;
 
     @Autowired
+    private MessageInfoDAO messageInfoDAO;
+
+    @Autowired
     private ResourceBundleMessageSource messageSource;
 
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView doneAuthentication(@RequestParam("auLogin") String login,
                                            @RequestParam("auPassword") String password,
                                            HttpSession session,
-                                           RedirectAttributes redirectAttributes) {
+                                           RedirectAttributes redirectAttributes) throws MessageInfoExeption {
         Account account = loginDAO.checkLoginAndPassword(login, password);
+        MessageInfo messageInfo = messageInfoDAO.getMessageInfo(account);
+        if (null == messageInfo) {
+            throw new MessageInfoExeption("Can't find message info");
+        }
         if (null != account) {
             Map<String, Object> attributes = new HashMap<>();
             session.setAttribute("account", account);
             attributes.put("account", account);
+            attributes.put("messageInfo", messageInfo);
             return new ModelAndView("home", attributes);
         } else {
             redirectAttributes.addFlashAttribute("errorLogining", messageSource.getMessage("errorLogining", null, Locale.getDefault()));
@@ -49,10 +60,18 @@ public class LoginController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView getAccountPage(HttpSession session) {
+    public ModelAndView getAccountPage(HttpSession session) throws MessageInfoExeption {
         Account account = (Account) session.getAttribute("account");
+        MessageInfo messageInfo = messageInfoDAO.getMessageInfo(account);
+        if (null == messageInfo) {
+            throw new MessageInfoExeption("Can't find message info");
+        }
         if (null != account) {
-            return new ModelAndView("home", "account", account);
+            Map<String, Object> attributes = new HashMap<>();
+            session.setAttribute("account", account);
+            attributes.put("account", account);
+            attributes.put("messageInfo", messageInfo);
+            return new ModelAndView("home", attributes);
         } else {
             return new ModelAndView("wellcome");
         }

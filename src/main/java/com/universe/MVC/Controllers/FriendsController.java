@@ -3,6 +3,7 @@ package com.universe.MVC.Controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.universe.DAO.DAOLayer.FriendsDAO;
+import com.universe.DAO.DAOLayer.MessageInfoDAO;
 import com.universe.Entity.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -27,6 +28,9 @@ public class FriendsController {
     @Autowired
     private FriendsDAO friendsDAO;
 
+    @Autowired
+    private MessageInfoDAO messageInfoDAO;
+
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getFriendsList(HttpSession session) throws JsonProcessingException {
         Account account = (Account) session.getAttribute("account");
@@ -38,6 +42,7 @@ public class FriendsController {
         Map<String, Object> modelData = new HashMap<>();
         modelData.put("friendList", friendsDAO.getAccountFriends(account));
         modelData.put("account", account);
+        modelData.put("messageInfo", messageInfoDAO.getMessageInfo(account));
         return new ModelAndView("friends", modelData);
     }
 

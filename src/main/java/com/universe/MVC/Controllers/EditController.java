@@ -1,6 +1,7 @@
 package com.universe.MVC.Controllers;
 
 import com.universe.DAO.DAOLayer.EditProfileDAO;
+import com.universe.DAO.DAOLayer.MessageInfoDAO;
 import com.universe.Tools.ControllerTools;
 import com.universe.Entity.Account;
 import com.universe.Entity.EditProfileForm;
@@ -17,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by boduill on 14.12.15.
@@ -26,10 +29,14 @@ import java.io.IOException;
 @RequestMapping("/edit")
 public class EditController {
 
-    @Autowired ControllerTools controllerTools;
+    @Autowired
+    private ControllerTools controllerTools;
 
     @Autowired
     private EditProfileDAO editProfileDAO;
+
+    @Autowired
+    private MessageInfoDAO messageInfoDAO;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getChangeUserInfoPage(HttpSession session) {
@@ -37,7 +44,10 @@ public class EditController {
         if (null == account) {
             return new ModelAndView("wellcome");
         }
-        return new ModelAndView("edit", "account", account);
+        Map<String, Object> attributes = new HashMap<>();
+        attributes.put("account", account);
+        attributes.put("messageInfo", messageInfoDAO.getMessageInfo(account));
+        return new ModelAndView("edit", attributes);
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -46,6 +56,8 @@ public class EditController {
                                        @RequestParam(value = "avatar") MultipartFile avatar,
                                        HttpSession session) throws IOException {
         Account account = (Account) session.getAttribute("account");
+        Map<String,Object> attributes = new HashMap<>();
+
         if (null == account) {
             return new ModelAndView("wellcome");
         }

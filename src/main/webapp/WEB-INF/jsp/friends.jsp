@@ -19,7 +19,7 @@
     <jsp:include page="patterns/header.jsp"/>
     <div class="row">
         <jsp:include page="patterns/navigation.jsp"/>
-        <div class="col-lg-9 col-md-9 margin-10">
+        <div class="col-lg-8 col-md-8 margin-10">
             <div class="row border-of-entity">
                 <div class="h4 text-center">You have ${friendList.size()} friends</div>
             </div>
