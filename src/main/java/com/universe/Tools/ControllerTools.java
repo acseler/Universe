@@ -76,11 +76,10 @@ public class ControllerTools {
         return account;
     }
 
-    public MessageInfo getNewMessageInfoForAccount(Account account) {
+    public MessageInfo getNewMessageInfoForAccount() {
         MessageInfo messageInfo = new MessageInfo();
         messageInfo.setMessCount(0);
         return messageInfo;
     }
-
 }
 

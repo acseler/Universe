@@ -3,6 +3,6 @@
         <li><a href="/home">My page</a></li>
         <li><a href="#">Universe</a></li>
         <li><a href="/friends">Friends</a></li>
-        <li><a href="#">Messages <span class="badge">${messageInfo.messCount}</span></a></li>
+        <li><a href="/message">Messages <span class="badge">${messageInfo.messCount}</span></a></li>
     </ul>
 </nav>

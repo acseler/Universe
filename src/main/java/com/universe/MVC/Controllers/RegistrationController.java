@@ -2,10 +2,10 @@ package com.universe.MVC.Controllers;
 
 import com.universe.DAO.DAOLayer.MessageInfoDAO;
 import com.universe.DAO.DAOLayer.RegistryDAO;
-import com.universe.Tools.ControllerTools;
 import com.universe.Entity.Account;
 import com.universe.Entity.Login;
 import com.universe.Entity.RegistrationForm;
+import com.universe.Tools.ControllerTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.ResourceBundleMessageSource;
@@ -63,7 +63,7 @@ public class RegistrationController {
             e.printStackTrace();
         }
         Account account = login.getAccount();
-        if (registryDAO.createAccount(login, controllerTools.getNewMessageInfoForAccount(account))) {
+        if (registryDAO.createAccount(login, controllerTools.getNewMessageInfoForAccount())) {
             Map<String, Object> attributes = new HashMap<>();
             session.setAttribute("account", account);
             attributes.put("account", account);
