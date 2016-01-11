@@ -1,6 +1,7 @@
 package com.universe.MVC.Controllers;
 
 import com.sun.org.apache.bcel.internal.generic.ACONST_NULL;
+import com.universe.DAO.DAOLayer.DialogDAO;
 import com.universe.DAO.DAOLayer.MessageDAO;
 import com.universe.DAO.DAOLayer.MessageInfoDAO;
 import com.universe.Entity.Account;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,6 +27,9 @@ public class MessageController {
 
     @Autowired
     private MessageInfoDAO messageInfoDAO;
+
+    @Autowired
+    private DialogDAO dialogDAO;
 
     @Autowired
     private MessageDAO messageDAO;
@@ -44,8 +49,26 @@ public class MessageController {
             session.setAttribute("account", account);
             attributes.put("account", account);
             attributes.put("messageInfo", messageInfoDAO.getMessageInfo(account));
-            attributes.put("messages", messageDAO.getMessages(account));
+            attributes.put("dialogs", dialogDAO.getDialogs(account));
+            System.out.println(Arrays.toString(dialogDAO.getDialogs(account).toArray()));
             return new ModelAndView("messages", attributes);
+        } else {
+            return new ModelAndView("wellcome");
+        }
+    }
+
+    @RequestMapping(value = "/{dialogId}", method = RequestMethod.GET)
+    public ModelAndView getMessageForDialog(HttpSession session,
+                                            @PathVariable long dialogId) {
+        Account account = (Account) session.getAttribute("account");
+        if (null != account) {
+            Map<String, Object> attributes = new HashMap<>();
+            session.setAttribute("account", account);
+            attributes.put("account", account);
+            attributes.put("messageInfo", messageInfoDAO.getMessageInfo(account));
+            attributes.put("messages", messageDAO.getMessages(dialogId));
+            System.out.println(Arrays.toString(messageDAO.getMessages(dialogId).toArray()));
+            return new ModelAndView("dialog", attributes);
         } else {
             return new ModelAndView("wellcome");
         }

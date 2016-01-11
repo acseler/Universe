@@ -1,6 +1,7 @@
 package com.universe.Entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by boduill on 30.11.15.
@@ -20,16 +21,18 @@ public class Message {
     @Column(name = "MESS_ID")
     private long messageId;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "FROM_USER")
-    private Account fromUser;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "TO_USER")
-    private Account toUser;
+    @OneToOne
+    @JoinColumn(name = "DIAL_ID")
+    private Dialog dialog;
 
     @Column(name = "TEXT_MESSAGE", nullable = false)
     private String textMessage;
+
+    @Column(name = "MESSAGE_TIME")
+    private Date messageDate;
+
+    @Column(name = "WAS_READ")
+    private char wasRead;
 
     public long getMessageId() {
         return messageId;
@@ -39,20 +42,12 @@ public class Message {
         this.messageId = messageId;
     }
 
-    public Account getFromUser() {
-        return fromUser;
+    public Dialog getDialog() {
+        return dialog;
     }
 
-    public void setFromUser(Account fromUser) {
-        this.fromUser = fromUser;
-    }
-
-    public Account getToUser() {
-        return toUser;
-    }
-
-    public void setToUser(Account toUser) {
-        this.toUser = toUser;
+    public void setDialog(Dialog dialog) {
+        this.dialog = dialog;
     }
 
     public String getTextMessage() {
@@ -61,5 +56,40 @@ public class Message {
 
     public void setTextMessage(String textMessage) {
         this.textMessage = textMessage;
+    }
+
+    public Date getDate() {
+        return messageDate;
+    }
+
+    public void setDate(Date date) {
+        this.messageDate = date;
+    }
+
+    public char getWasRead() {
+        return wasRead;
+    }
+
+    public void setWasRead(char wasRead) {
+        this.wasRead = wasRead;
+    }
+
+    public Date getMessageDate() {
+        return messageDate;
+    }
+
+    public void setMessageDate(Date messageDate) {
+        this.messageDate = messageDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "messageId=" + messageId +
+                ", dialog=" + dialog +
+                ", textMessage='" + textMessage + '\'' +
+                ", messageDate=" + messageDate +
+                ", wasRead=" + wasRead +
+                '}';
     }
 }

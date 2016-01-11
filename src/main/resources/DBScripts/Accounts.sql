@@ -40,20 +40,23 @@ CREATE TABLE logins (
 -- 	CONSTRAINT UNIVERSE_CONSTRAINT FOREIGN KEY (acc_id) REFERENCES accounts(acc_id)
 );
 
+CREATE TABLE dialog_info (
+	dial_id BIGINT PRIMARY KEY,
+	acc_id_one BIGINT REFERENCES accounts(acc_id) NOT NULL ,
+	acc_id_two BIGINT REFERENCES accounts(acc_id) NOT NULL
+);
+
 CREATE TABLE messages (
 	mess_id BIGINT PRIMARY KEY,
-	from_user BIGINT REFERENCES accounts(acc_id),
-	to_user BIGINT REFERENCES accounts(acc_id),
+	dial_id BIGINT REFERENCES dialog_info(dial_id),
 	text_message VARCHAR(2048) NOT NULL,
 	message_time date NOT NULL,
 	was_read char(1) CHECK(was_read IN ('y', 'n'))
 );
 
-CREATE TABLE messages_info(
+CREATE TABLE messages_info (
 	mess_info_id BIGINT PRIMARY KEY,
 	mess_count INTEGER NOT NULL DEFAULT 0,
 	acc_id BIGINT REFERENCES accounts(acc_id)
 );
-
-
 

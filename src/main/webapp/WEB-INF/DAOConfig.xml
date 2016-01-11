@@ -32,6 +32,7 @@
                 <value>com.universe.Entity.Friend</value>
                 <value>com.universe.Entity.MessageInfo</value>
                 <value>com.universe.Entity.Message</value>
+                <value>com.universe.Entity.Dialog</value>
             </list>
         </property>
         <property name="hibernateProperties">

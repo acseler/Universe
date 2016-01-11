@@ -25,20 +25,33 @@
                     <div class="h4 text-center">You have ${messageInfo.messCount} new messages</div>
                 </div>
 
-                <c:forEach items="${messages}" var="message">
+                <c:forEach items="${dialogs}" var="dialog">
                     <div class="row">
                         <div class="border-of-entity col-md-12">
                             <div class=" col-md-3 padding-0">
-                                <%--<img src="${message.base64}" alt="" width="128" height="128"--%>
-                                     <%--class="img-responsive img-rounded left"/>--%>
+                                <c:if test="${account.id != dialog.accIdOne.id}">
+                                    <img src="${dialog.accIdOne.base64}" alt="" width="128" height="128"
+                                         class="img-responsive img-rounded left"/>
+                                </c:if>
+                                <c:if test="${account.id == dialog.accIdOne.id}">
+                                    <img src="${dialog.accIdTwo.base64}" alt="" width="128" height="128"
+                                         class="img-responsive img-rounded left"/>
+                                </c:if>
                             </div>
                             <div class="col-md-5">
-                                <h3 class="text-left margin-0">${message.textMessage}</h3>
+                                <c:if test="${account.id != dialog.accIdOne.id}">
+                                    <h3 class="text-left margin-0">${dialog.accIdOne.firstName} ${dialog.accIdOne.lastName}</h3>
+                                </c:if>
+                                <c:if test="${account.id == dialog.accIdOne.id}">
+                                    <h3 class="text-left margin-0">${dialog.accIdTwo.firstName} ${dialog.accIdTwo.lastName}</h3>
+                                </c:if>
                             </div>
                             <div class="col-md-4">
-                                <button type="button" class="col-md-12 btn btn-primary">
-                                    Answer
-                                </button>
+                                <a href="/message/${dialog.dialId}">
+                                    <button type="button" class="col-md-12 btn btn-primary">
+                                        Answer
+                                    </button>
+                                </a>
                             </div>
                         </div>
                     </div>
