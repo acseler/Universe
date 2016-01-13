@@ -18,7 +18,10 @@ public class DialogDAO {
     private HibernateTemplate hibernateTemplate;
 
     public List<Dialog> getDialogs(Account account) {
-        return (List<Dialog>) hibernateTemplate.find("FROM Dialog WHERE acc_id_one = ? OR acc_id_two = ?", account.getId(), account.getId());
+        List<Dialog> dialogList = (List<Dialog>) hibernateTemplate.find("FROM Dialog WHERE acc_id_one = ?" +
+                " ORDER BY message_time DESC", account.getId());
+
+        return dialogList;
     }
 
 }

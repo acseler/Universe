@@ -36,7 +36,10 @@ public class MessageController {
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.POST)
     public void sendMessage(@RequestParam("message") String message,
-                            @PathVariable long userId) {
+                            @PathVariable long userId,
+                            HttpSession session) {
+        Account account = (Account) session.getAttribute("account");
+        messageDAO.sendMessage(account, userId, message);
         System.out.println(userId);
         System.out.println(message);
     }

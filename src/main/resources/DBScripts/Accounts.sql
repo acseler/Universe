@@ -43,7 +43,9 @@ CREATE TABLE logins (
 CREATE TABLE dialog_info (
 	dial_id BIGINT PRIMARY KEY,
 	acc_id_one BIGINT REFERENCES accounts(acc_id) NOT NULL ,
-	acc_id_two BIGINT REFERENCES accounts(acc_id) NOT NULL
+	acc_id_two BIGINT REFERENCES accounts(acc_id) NOT NULL ,
+	message VARCHAR(2048),
+	message_time TIMESTAMP NOT NULL
 );
 
 CREATE TABLE messages (

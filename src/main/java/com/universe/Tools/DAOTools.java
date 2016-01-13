@@ -2,6 +2,7 @@ package com.universe.Tools;
 
 import com.universe.DAO.Enums.FriendEnum;
 import com.universe.Entity.Account;
+import com.universe.Entity.Dialog;
 import com.universe.Entity.Friend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
@@ -27,15 +28,15 @@ public class DAOTools {
      * @return
      */
     @Transactional
-    public List<Account> getFriendsAccountsFromFriendList(List<Friend> friendList) {
+    public List<Account> getFriendsAccountsFromFriendList(List<Friend> friendList, Account account) {
         List<Account> list = new LinkedList<>();
         for (Friend f : friendList) {
-            list.add(getFriendAccount(f));
+            list.add(getFriendAccount(f, account));
         }
         return list;
     }
 
-    private Account getAccountById(long id) {
+    public Account getAccountById(long id) {
         Account account = hibernateTemplate.get(Account.class, id);
         return account;
     }
@@ -45,11 +46,12 @@ public class DAOTools {
         return account;
     }
 
-    private Account getFriendAccount(Friend friend) {
-        if (friend.getInvite().equals(FriendEnum.UserToFriendInvite.getValue())) {
+    private Account getFriendAccount(Friend friend, Account account) {
+        if (account.getId() == friend.getAccId()) {
             return setStatus(getAccountById(friend.getFriend()), friend);
         } else {
             return setStatus(getAccountById(friend.getAccId()), friend);
         }
     }
+
 }

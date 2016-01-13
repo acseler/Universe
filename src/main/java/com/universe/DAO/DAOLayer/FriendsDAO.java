@@ -30,7 +30,7 @@ public class FriendsDAO {
         long id = account.getId();
         List<Friend> list = (List<Friend>) hibernateTemplate.findByNamedParam("FROM Friend " +
                 "WHERE acc_id = :id OR friend = :id", "id", id);
-        return daoTools.getFriendsAccountsFromFriendList(list);
+        return daoTools.getFriendsAccountsFromFriendList(list, account);
     }
 
     @Transactional

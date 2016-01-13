@@ -13,7 +13,9 @@ INSERT INTO "public"."logins" (login,password,acc_id) VALUES ('Saitama','123',33
 INSERT INTO "public"."logins" (login,password,acc_id) VALUES ('Genos','123',35);
 INSERT INTO "public"."logins" (login,password,acc_id) VALUES ('Sonic','123',34);
 
-INSERT  INTO dialog_info VALUES (32, 33, 34);
+INSERT  INTO dialog_info VALUES (32, 33, 34, 'OLOLOLO H1','2012-12-21');
+INSERT  INTO dialog_info VALUES (732, 33, 34, '1111111111','2013-12-21');
+INSERT  INTO dialog_info VALUES (232, 33, 34, '2222222222','2014-12-21');
+INSERT  INTO dialog_info VALUES (432, 33, 34, '3333333333','2011-12-21');
 INSERT INTO messages VALUES (1, 32, 'OLOLOLO H1', '2015-12-26', 'n');
 INSERT INTO messages_info VALUES (1, 1, 33);
-

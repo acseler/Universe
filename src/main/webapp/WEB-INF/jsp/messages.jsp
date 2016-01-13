@@ -45,6 +45,9 @@
                                 <c:if test="${account.id == dialog.accIdOne.id}">
                                     <h3 class="text-left margin-0">${dialog.accIdTwo.firstName} ${dialog.accIdTwo.lastName}</h3>
                                 </c:if>
+                                <p>
+                                    ${dialog.message}
+                                </p>
                             </div>
                             <div class="col-md-4">
                                 <a href="/message/${dialog.dialId}">

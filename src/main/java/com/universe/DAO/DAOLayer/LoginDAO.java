@@ -5,6 +5,7 @@ import com.universe.Entity.Login;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by boduill on 07.12.15.
@@ -21,6 +22,7 @@ public class LoginDAO {
      * @param password - password
      * @return - Account entity
      */
+    @Transactional
     public Account checkLoginAndPassword(String login, String password) {
         Login loginEn = null;
         if (login.isEmpty() || password.isEmpty()) {
