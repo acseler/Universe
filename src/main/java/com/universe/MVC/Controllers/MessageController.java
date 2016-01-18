@@ -6,6 +6,7 @@ import com.universe.DAO.DAOLayer.MessageDAO;
 import com.universe.DAO.DAOLayer.MessageInfoDAO;
 import com.universe.Entity.Account;
 import com.universe.Entity.MessageInfo;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,8 @@ import java.util.Map;
 @Scope("session")
 @RequestMapping(value = "/message")
 public class MessageController {
+
+    private static final Logger logger = Logger.getLogger(MessageController.class);
 
     @Autowired
     private MessageInfoDAO messageInfoDAO;
@@ -52,28 +55,28 @@ public class MessageController {
             session.setAttribute("account", account);
             attributes.put("account", account);
             attributes.put("messageInfo", messageInfoDAO.getMessageInfo(account));
+            logger.info(messageInfoDAO.getMessageInfo(account));
             attributes.put("dialogs", dialogDAO.getDialogs(account));
-            System.out.println(Arrays.toString(dialogDAO.getDialogs(account).toArray()));
             return new ModelAndView("messages", attributes);
         } else {
             return new ModelAndView("wellcome");
         }
     }
 
-    @RequestMapping(value = "/{dialogId}", method = RequestMethod.GET)
-    public ModelAndView getMessageForDialog(HttpSession session,
-                                            @PathVariable long dialogId) {
-        Account account = (Account) session.getAttribute("account");
-        if (null != account) {
-            Map<String, Object> attributes = new HashMap<>();
-            session.setAttribute("account", account);
-            attributes.put("account", account);
-            attributes.put("messageInfo", messageInfoDAO.getMessageInfo(account));
-            attributes.put("messages", messageDAO.getMessages(dialogId));
-            System.out.println(Arrays.toString(messageDAO.getMessages(dialogId).toArray()));
-            return new ModelAndView("dialog", attributes);
-        } else {
-            return new ModelAndView("wellcome");
-        }
-    }
+//    @RequestMapping(value = "/{dialogId}", method = RequestMethod.GET)
+//    public ModelAndView getMessageForDialog(HttpSession session,
+//                                            @PathVariable long dialogId) {
+//        Account account = (Account) session.getAttribute("account");
+//        if (null != account) {
+//            Map<String, Object> attributes = new HashMap<>();
+//            session.setAttribute("account", account);
+//            attributes.put("account", account);
+//            attributes.put("messageInfo", messageInfoDAO.getMessageInfo(account));
+//            attributes.put("messages", messageDAO.getMessages(dialogId));
+//            System.out.println(Arrays.toString(messageDAO.getMessages(dialogId).toArray()));
+//            return new ModelAndView("dialog", attributes);
+//        } else {
+//            return new ModelAndView("wellcome");
+//        }
+//    }
 }

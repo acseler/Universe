@@ -9,6 +9,10 @@
     margin-left: 10px !important;
 }
 
+.margin-right-10 {
+    margin-right: 10px !important;
+}
+
 .margin-10 {
     margin-top: 10px;
 }
@@ -52,6 +56,15 @@ img {
     height: auto;
     max-width: 100%;
     vertical-align: middle;
+}
+
+.exit-button {
+    display: block;
+    font-weight: bold;
+    font-size: large;
+    color: #E8EFF7;
+    text-shadow: 1px 1px 1px #5f7487;
+    text-decoration: none !important;
 }
 
 .vertical-align-top {

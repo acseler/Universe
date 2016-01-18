@@ -1,6 +1,8 @@
 /**
- * Created by boduill on 23.12.15.
+ * Created by bod on 13.01.2016.
  */
+
+
 var account;
 var accId;
 var friendId;
@@ -68,5 +70,3 @@ $(document).ready(function () {
         }
     };
 });
-
-

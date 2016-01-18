@@ -20,45 +20,74 @@
     <div class="row">
         <jsp:include page="patterns/navigation.jsp"/>
         <div class="col-lg-8 col-md-8 margin-10">
-            <div class="row">
-                <div class="row border-of-entity">
+            <div class="row border-of-entity">
+                <c:if test="${messageInfo.messCount == 0}">
+                    <div class="h4 text-center">You don't have new massages</div>
+                </c:if>
+                <c:if test="${messageInfo.messCount > 0}">
                     <div class="h4 text-center">You have ${messageInfo.messCount} new messages</div>
-                </div>
+                </c:if>
 
-                <c:forEach items="${dialogs}" var="dialog">
-                    <div class="row">
-                        <div class="border-of-entity col-md-12">
-                            <div class=" col-md-3 padding-0">
-                                <c:if test="${account.id != dialog.accIdOne.id}">
-                                    <img src="${dialog.accIdOne.base64}" alt="" width="128" height="128"
-                                         class="img-responsive img-rounded left"/>
-                                </c:if>
-                                <c:if test="${account.id == dialog.accIdOne.id}">
-                                    <img src="${dialog.accIdTwo.base64}" alt="" width="128" height="128"
-                                         class="img-responsive img-rounded left"/>
-                                </c:if>
-                            </div>
-                            <div class="col-md-5">
-                                <c:if test="${account.id != dialog.accIdOne.id}">
-                                    <h3 class="text-left margin-0">${dialog.accIdOne.firstName} ${dialog.accIdOne.lastName}</h3>
-                                </c:if>
-                                <c:if test="${account.id == dialog.accIdOne.id}">
-                                    <h3 class="text-left margin-0">${dialog.accIdTwo.firstName} ${dialog.accIdTwo.lastName}</h3>
-                                </c:if>
-                                <p>
+            </div>
+
+            <c:forEach items="${dialogs}" var="dialog">
+                <div class="row">
+                    <div class="border-of-entity col-md-12">
+                        <div class=" col-md-3 padding-0">
+                            <img src="${dialog.accIdTwo.base64}" alt="" width="128" height="128"
+                                 class="img-responsive img-rounded left"/>
+                        </div>
+                        <div class="col-md-5">
+                            <h3 class="text-left margin-0">${dialog.accIdTwo.firstName} ${dialog.accIdTwo.lastName}</h3>
+
+                            <p>
                                     ${dialog.message}
-                                </p>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="/message/${dialog.dialId}">
-                                    <button type="button" class="col-md-12 btn btn-primary">
-                                        Answer
-                                    </button>
-                                </a>
-                            </div>
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="col-md-12 btn btn-primary"
+                                    data-toggle="modal"
+                                    data-target="#SendMessageDialog"
+                                    onclick=setModalFields(${dialog.accIdTwo.json})>
+                                Answer
+                            </button>
                         </div>
                     </div>
-                </c:forEach>
+                </div>
+            </c:forEach>
+        </div>
+        <!-- Modal send message -->
+        <div class="modal fade" id="SendMessageDialog" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Send message</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="messageTo">Send to : </label>
+
+                                <div class="h4" id="messageTo"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="message" class="control-label">Message</label>
+                                <textarea class="form-control" id="message"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="button" id="send" class="form-control btn btn-primary" value="Send"/>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -66,5 +95,6 @@
 <script src="/pages/scripts/jquery-1.11.3.min.js"></script>
 <script src="/pages/scripts/bootstrap.min.js"></script>
 <script src="/pages/scripts/script.js"></script>
+<script src="/pages/scripts/friends.js"></script>
 </body>
 </html>
