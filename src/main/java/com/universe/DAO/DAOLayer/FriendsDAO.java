@@ -33,9 +33,5 @@ public class FriendsDAO {
         return daoTools.getFriendsAccountsFromFriendList(list, account);
     }
 
-    @Transactional
-    public void deleteAccountFromFriend(long accId, long friendId) {
-        hibernateTemplate.bulkUpdate("DELETE Friend where (acc_id = ? AND friend = ?)" +
-                "OR (acc_id = ? AND friend = ?)", accId, friendId, friendId, accId);
-    }
+
 }
