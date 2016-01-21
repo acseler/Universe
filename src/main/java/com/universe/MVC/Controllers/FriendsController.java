@@ -56,7 +56,6 @@ public class FriendsController {
                              @PathVariable("friendId") long friendId) {
         System.out.println("accId " + accId);
         System.out.println("frId " + friendId);
-        friendsDAO.deleteAccountFromFriend(accId, friendId);
     }
 
 
